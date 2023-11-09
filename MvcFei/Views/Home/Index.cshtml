@@ -1,0 +1,64 @@
+﻿@model MvcFei.Models.AlumnoCarreraViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<form asp-asp-controller="Home" asp-action="Index" method="get">
+    <p>
+        <select asp-for="AlumnoCarrera" asp-items="Model.Carreras">
+            <option value="">All</option>
+        </select>
+        Title: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filtro" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Alumnos[0].Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Alumnos[0].FechaIngreso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Alumnos[0].Carrera)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Alumnos[0].Promedio)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Alumnos) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaIngreso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Carrera)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Promedio)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.AlumnoId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.AlumnoId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.AlumnoId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
